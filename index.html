@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+
+    <!-- ----- ----- ----- START: License ----- ----- -----
+        MIT License
+
+        Copyright (c)2022 Nathee Magner (tacoshy)
+
+        Permission is hereby granted, free of charge, to any person obtaining a copy 
+        of this software and associated documentation files (the "Software"), to deal
+        in the Software without restriction, including without limitation the rights
+        to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+        copies of the Software, and to permit persons to whom the Software is
+        furnished to do so, subject to the following conditions:
+
+        The above copyright notice and this permission notice shall be included in all
+        copies or substantial portions of the Software.
+
+        THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND; EXPRESS OR 
+        IMPLIED; INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+        FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+        AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER 
+        LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+        OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+        SOFTWARE. 
+    ----- ----- ----- END: License ----- ----- ----- -->
+
+    <head>
+        <meta charset="utf-8">
+        <title>Berechnungstool für Einstreumenge</title>
+        <link rel="stylesheet" href="framework.css">
+        <link rel="stylesheet" href="style.css">
+        <script src="initialization.js"></script>     
+    </head>
+
+    <body>
+        
+        <main class="py-l px-xl mx-auto my-xl">
+
+            <!-- ----- Section: Title ----- -->
+            <h1 id="title"></h1>
+
+            <!-- ----- Section: Description ----- -->
+            <section id="description" title="Beschreibung über die Richtlininen des deutschen Standards">
+                <p class="text-align-justify" id="text-block-1"></p>
+                <p class="text-align-justify" id="text-block-2"></p>
+                <h3 class="text-align-center" id="sub-title-1"></h3>
+                <p class="text-align-center text-color-red" id="text-block-3"></p>
+                <h4 class="text-align-center" id="sub-title-2"></h4>
+            </section>
+
+            <!-- ----- Section: Data input  ----- -->
+            <section id="data-input">
+                <!-- Checkbox as toggle for advanced settings -->
+                <div class="d-flex justify-content-end align-items-center" id="expert-mode-container">
+                    <input id="expert-mode-toggle" type="checkbox" title="Der Expertenmodus öffnet erweiterte Einstellungen für erfahrene Nutzer">
+                    <label class="ml-xs" for="expert-mode-toggle" title="Der Expertenmodus öffnet erweiterte Einstellungen für erfahrene Nutzer"></label>                        
+                </div>
+                <!-- input field to insert cage data -->
+                <div class="row col-1 col-s-2 col-m-3" id="data-input-field">
+                    <div>
+                        <h4 class="p-s mb-0" id="title-cage-data"></h4>
+                        <div class="d-flex align-items-center" id="cage-data-width">
+                            <label class="width-1-3 py-l px-s text-align-end" for="input-cage-width" id="label-cage-width"></label>
+                            <input class="flex-grow-1 max-width-2-5 p-s m-m mr-xs text-align-end" id="input-cage-width" type="number">
+                            <span class="unit-lenght mr-m"></span>  
+                        </div>
+                        <div class="d-flex align-items-center" id="cage-data-depth">
+                            <label class="width-1-3 py-l px-s text-align-end" for="input-cage-depth" id="label-cage-depth"></label>
+                            <input class="flex-grow-1 max-width-2-5 p-s m-m mr-xs text-align-end" id="input-cage-depth" type="number">
+                            <span class="unit-lenght mr-m"></span>
+                        </div>
+                        <div class="d-flex align-items-center" id="cage-data-surface-area">
+                            <label class="width-1-3 py-l px-s text-align-end" for="input-cage-surface-area" id="label-cage-surface-area"></label>
+                            <input class="flex-grow-1 max-width-2-5 p-s m-m mr-xs text-align-end" id="input-cage-surface-area" type="number" readonly>
+                            <span class="unit-surface-area-A mr-m"></span>
+                        </div>
+                    </div>
+                    <div>
+                        <h4 class="p-s mb-0" id="title-bedding-data"></h4>
+                        <div class="d-flex align-items-center" id="bedding-data-type">
+                            <label class="width-1-3 py-l px-s text-align-end" for="input-bedding-type">Art</label>
+                            <select class="flex-grow-1 max-width-2-5 p-s m-m mr-xs text-align-end" id="input-bedding-type"></select>
+                        </div>
+                        <div class="d-flex align-items-center d-none" id="bedding-data-custom">
+                            <label class="width-1-3 py-l px-s text-align-end" for="input-bedding-custom">Masse</label>
+                            <input class="flex-grow-1 max-width-2-5 p-s m-m mr-xs text-align-end" id="input-bedding-custom" type="number">
+                            <span class="unit-surface-area-A mr-m"></span>
+                        </div>
+                        <div class="d-flex align-items-center d-none" id="bedding-data-compression-factor">                                
+                            <label class="width-1-3 py-l px-s text-align-end" for="input-bedding-compression-factor">Pressfaktor</label>
+                            <input class="flex-grow-1 max-width-2-5 p-s m-m mr-xs text-align-end" id="input-bedding-compression-factor" type="number">
+                            <span class="unit-factor mr-m"></span>
+                        </div>
+                    </div>
+                    <div>
+                        <h4 class="p-s mb-0 hidden-m-block">&nbsp;</h4>
+                    </div>
+                </div>
+
+                <!-- output field to display calculated data -->
+                <div class="row col-1 col-s-2 col-m-3" id="data-output-field">
+                    <div>
+                        <h4 class="p-s my-0" id="title-data-volume"></h4>                       
+                        <div class="d-flex align-items-center" id="data-volume-loosely">
+                            <label class="width-1-3 py-l px-s text-align-end" for="output-volume-loosely" id="label-output-volume-loosely">{}</label>
+                            <input class="flex-grow-1 max-width-2-5 p-s m-m mr-xs text-align-end" id="output-volume-loosely" type="number" disabled>
+                            <span class="unit-volume mr-m"></span>
+                        </div>
+                        <div class="d-flex align-items-center" id="data-volume-compressed">
+                            <label class="width-1-3 py-l px-s text-align-end" for="output-volume-compressed"  id="label-output-volume-compressed">{}</label>
+                            <input class="flex-grow-1 max-width-2-5 p-s m-m mr-xs text-align-end" id="output-volume-compressed" type="number" disabled>
+                            <span class="unit-volume mr-m"></span>
+                        </div>
+                    </div>  
+                    <div>
+                        <h4 class="p-s my-0" id="title-data-weight"></h4>                       
+                        <div class="d-flex align-items-center" id="data-weight-loosely">
+                            <label class="width-1-3 py-l px-s text-align-end" for="output-volume-loosely" id="label-output-weight-loosely"></label>
+                            <input class="flex-grow-1 max-width-2-5 p-s m-m mr-xs text-align-end" id="output-weight-loosely" type="number" disabled>
+                            <span class="unit-weight mr-m"></span>
+                        </div>
+                        <div class="d-flex align-items-center" id="data-weight-compressed">
+                            <label class="width-1-3 py-l px-s text-align-end" for="output-weight-compressed"  id="label-output-weight-compressed"></label>
+                            <input class="flex-grow-1 max-width-2-5 p-s m-m mr-xs text-align-end" id="output-weight-compressed" type="number" disabled>
+                            <span class="unit-weight mr-m"></span>
+                        </div>
+                    </div>
+                    <div>
+                        <h4 class="p-s my-0 hidden-m-block">&nbsp;</h4>
+                    </div>                    
+                </div>
+
+                <!-- output field to display comparison -->
+                <div class="row col-1 col-s-2 col-m-3" id="data-comparison-field">
+                    <div>
+                        <h4 class="p-s my-0" id="title-data-comparison-text"></h4>                       
+                        <div class="pr-xl" id="data-comparison-text"></div>
+                    </div>  
+                    <div>
+                        <h4 class="p-s my-0" id="title-data-comparison-legend"></h4>                       
+                        <div class="d-flex align-items-center" id="data-comparison-cage">
+                            <label class="width-1-3 py-l px-s text-align-end" for="output-comparison-cage" id="label-comparison-cage"></label>
+                            <input class="flex-grow-1 max-width-2-5 p-s m-m mr-xs text-align-end" id="output-comparison-cage" type="number" disabled>
+                            <span class="unit-surface-area-B mr-m"></span>
+                        </div>
+                        <div class="d-flex align-items-center" id="data-comparison-de">
+                            <label class="width-1-3 py-l px-s text-align-end" for="output-comparison-de"  id="label-comparison-de">56</label>
+                            <input class="flex-grow-1 max-width-2-5 p-s m-m mr-xs text-align-end" id="output-comparison-de" type="number" disabled>
+                            <span class="unit-surface-area-B mr-m"></span>
+                        </div>
+                    </div>
+                    <div class="flex-grow-1">
+                        <h4 class="p-s my-0" id="title-data-comparison-graph"></h4>
+                    </div>                    
+                </div>
+            </section>
+        
+        </main>
+        
+    </body>
+
+</html>
