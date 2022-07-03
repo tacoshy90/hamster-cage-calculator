@@ -1,0 +1,151 @@
+:root {
+    /* template settings */
+    --color-text: rgba(66, 66, 66, 1);
+    --color-body: rgba(232, 208, 172, 1);
+    --color-element: rgba(240, 224, 200, 1);
+    --color-accent: rgba(236, 216, 186, 1);
+    --color-input: rgba(208, 213, 154, 1);
+    --color-info: rgba(162, 197, 89, 1);
+    --color-border-top: rgba(227, 197, 152, 1);
+    --color-border-right: rgba(224, 190, 140, 1);
+    --color-border-bottom: rgba(218, 179, 120, 1);
+    --color-border-left: rgba(224, 190, 140, 1);
+    --color-border: var(--color-border-top) var(--color-border-right) 
+                    var(--color-border-bottom) var(--color-border-left);
+    --border-width: 1px;
+    --border-comparison-width: 3px;
+    --border-style: solid;   
+    --border-radius: 4px;
+    --alpha-border: 0.8;
+    --alpha-text: 0.8;
+    --color-compare-legend-user: rgba(255, 255, 0, 1);
+    --color-compare-legend-de: rgba(0, 255, 0, 1);
+    --color-compare-legend-hsus: rgba(0, 0, 255, 1);
+    --color-compare-legend-aspca: rgba(255, 0, 0, 1);
+    --color-compare-border-user: rgba(255, 255, 0, var(--alpha-border));
+    --color-compare-border-de: rgba(0, 255, 0, var(--alpha-border));
+    --color-compare-border-hsus: rgba(0, 0, 255, var(--alpha-border));
+    --color-compare-border-aspca: rgba(255, 0, 0, var(--alpha-border));
+    --color-compare-text-user: rgba(255, 255, 0, var(--alpha-text));
+    --color-compare-text-de: rgba(0, 255, 0, var(--alpha-text));
+    --color-compare-text-hsus: rgba(0, 0, 255, var(--alpha-text));
+    --color-compare-text-aspca: rgba(255, 0, 0, var(--alpha-text));
+}
+
+/* ----- Global Settings ----- */
+
+html {
+    font-family: Arial, Helvetica, sans-serif;
+    color: var(--template-color-text);
+}
+
+body {
+    background-color: var(--color-body);
+}
+
+main {
+    max-width: 1200px;
+    background-color: var(--color-element);
+}
+
+input,
+select {
+    background-color: var(--color-input);
+}
+
+input:read-only {
+    background-color: var(--color-accent);
+    -webkit-appearance: none;
+    appearance: textfield;   
+}
+
+.info-box {
+    background-color: var(--color-info);
+}
+
+/* ----- Border ----- */
+main,
+input,
+select {
+    border-color: var(--color-border);
+    border-radius: var(--border-radius);
+    border-width: var(--border-width);
+    border-style: var(--border-style);
+}
+
+section:nth-of-type(2) h4 {
+    border-top: calc(var(--border-width) * 2) var(--border-style) var(--color-border-top);
+    border-bottom: var(--border-width) var(--border-style) var(--color-border-top);
+}
+
+/* ----- specific settings ----- */
+#expert-mode-container {
+    font-size: 0.8em;
+}
+
+#expert-mode-container input[type="checkbox"] {
+    transform: scale(1.4);
+}
+
+[id*="data-input-"] .d-flex label,
+[id*="data-output-"] .d-flex label,
+[id*="data-comparison-"] .d-flex label {
+    background-color: var(--color-accent);
+    border-right: var(--border-width) var(--border-style) var(--color-border-top);
+}
+
+span[class*="legend-compare-"] {
+    width: 1em;
+    height: 1em;
+    border-radius: 50%;
+}
+
+span.legend-compare-user {
+    background-color: var(--color-compare-legend-user);
+}
+
+span.legend-compare-de {
+    background-color: var(--color-compare-legend-de);
+}
+
+span.legend-compare-hsus {
+    background-color: var(--color-compare-legend-hsus);
+}
+
+span.legend-compare-aspca {
+    background-color: var(--color-compare-legend-aspca);
+}
+
+#output-visual-comparison {
+    position: relative;
+}
+
+[id*="output-visual-comparison-"] {
+    text-align: right;
+    padding: var(--border-comparison-width);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+#output-visual-comparison-de {
+    border: var(--border-comparison-width) var(--border-style) var(--color-compare-border-de);
+    color: var(--color-compare-text-de);
+}
+
+#output-visual-comparison-hsus {
+    border: var(--border-comparison-width) var(--border-style) var(--color-compare-border-hsus);
+    color: var(--color-compare-text-hsus);
+}
+
+#output-visual-comparison-aspca {
+    border: var(--border-comparison-width) var(--border-style) var(--color-compare-border-aspca);
+    color: var(--color-compare-text-aspca);
+}
+
+#output-visual-comparison-user {
+    background: var(--color-compare-text-user);
+}
+
+
+
